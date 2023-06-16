@@ -66,40 +66,7 @@ img{
 }
 
     </style>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        async function fetchSolarFlareData()
-            {
-               const nasaAPIUrl = 'https://api.nasa.gov/DONKI/FLR?startDate=2016-01-01&endDate=2022-12-31&api_key=6lndcUdaT89ulcIkfai8eWvmBhrF1bJg0aAR6xZk';
-               const response = await fetch(nasaAPIUrl);
-               const data = await response.json();
-
-                console.log("parsed data length " + data.length);
-                let monthCounter = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-                for (let i = 0; i < data.length; i++) {
-                    let eventStart = data[i].beginTime;
-                    if (eventStart === null) {
-                        continue;
-                    }
-                    let beginDate = new Date(eventStart);
-                    let month = beginDate.getMonth();
-                    monthCounter[month]++;
-                }
-                return monthCounter;
-            }
-
-        let http;
-        let jsonData; 
-        console.log("before fetching data");
-        let chartData = fetchSolarFlareData();
-        const solarFlareChart = document.getElementById("SolarFlareChartID");
-        new Chart(solarFlareChart,{
-            type: 'bar',
-
-        });
-
-
-    </script>
+    
 </head>
 
 <body>
@@ -117,8 +84,70 @@ This shows how the data is </p>
     src="https://images.hindustantimes.com/tech/img/2023/06/06/960x540/faintyoung_2_1686050565679_1686050565860.jpg"
     alt="solar flare photo one">
     <img id = "two" width= "50%" height = "35%" src="https://cdn.sci.news/images/enlarge2/image_3801e-Solar-Flare.jpg" alt = "second solar flare">
+    <div>
+        <canvas id="myChart"></canvas>
+    </div>
     <canvas id = "SolarFlareChartID"></canvas>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    //Script content moved below the body to allow ChartJS to find the elementID 
+    async function fetchSolarFlareData()
+    {
+        const nasaAPIUrl = 'https://api.nasa.gov/DONKI/FLR?startDate=2016-01-01&endDate=2022-12-31&api_key=6lndcUdaT89ulcIkfai8eWvmBhrF1bJg0aAR6xZk';
+        const response = await fetch(nasaAPIUrl);
+        const data = await response.json();
+
+        console.log("parsed data length " + data.length);
+        let monthCounter = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        for (let i = 0; i < data.length; i++) {
+            let eventStart = data[i].beginTime;
+            if (eventStart === null) {
+                continue;
+            }
+            let beginDate = new Date(eventStart);
+            let month = beginDate.getMonth();
+            monthCounter[month]++;
+        }
+        return monthCounter;
+    }
+
+    async function displayChart(){
+        let chartData = await fetchSolarFlareData();
+        console.log(chartData);
+        console.log("foobar");
+        const solarFlareChart = document.getElementById("SolarFlareChartID");
+        new Chart(solarFlareChart, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb','Mar','Apr','May','Jun','Jul','Aug','Sept','Oct','Nov','dec'],
+                datasets: [{
+                    label: '# of solar flares',
+                    data: chartData,
+                    borderWidth: 1
+                }]
+            }
+
+
+        });
+    }
+    const ctx = document.getElementById('myChart');
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [12, 19, 3, 5, 2, 3],
+                    borderWidth: 1
+                }]
+            }
+        });
+    displayChart();
+
+</script>
 </body>
 
 </html>
