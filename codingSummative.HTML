@@ -66,6 +66,7 @@ img{
 }
 
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         async function fetchSolarFlareData()
             {
@@ -84,14 +85,18 @@ img{
                     let month = beginDate.getMonth();
                     monthCounter[month]++;
                 }
-                console.log(monthCounter)
+                return monthCounter;
             }
 
         let http;
         let jsonData; 
         console.log("before fetching data");
-        fetchSolarFlareData();
-        
+        let chartData = fetchSolarFlareData();
+        const solarFlareChart = document.getElementById("SolarFlareChartID");
+        new Chart(solarFlareChart,{
+            type: 'bar',
+
+        });
 
 
     </script>
@@ -112,6 +117,7 @@ This shows how the data is </p>
     src="https://images.hindustantimes.com/tech/img/2023/06/06/960x540/faintyoung_2_1686050565679_1686050565860.jpg"
     alt="solar flare photo one">
     <img id = "two" width= "50%" height = "35%" src="https://cdn.sci.news/images/enlarge2/image_3801e-Solar-Flare.jpg" alt = "second solar flare">
+    <canvas id = "SolarFlareChartID"></canvas>
 </div>
 </body>
 
