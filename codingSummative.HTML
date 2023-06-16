@@ -18,7 +18,8 @@
         font-size: 80px;
         color:azure;
     }
-    body{background-color:#c2ebff;}
+    body{
+    background-color:#c2ebff;}
     #explain{
     background-color: antiquewhite;
     padding: 100px;
@@ -34,14 +35,24 @@
     #sub-header{
     font-family: Arial, Helvetica, sans-serif;
     font-size: 35px;
-    top: 150%;
-    text-align: left;
+    margin-top: -5%;
+    text-align: right;
+    padding-right: 150px;
     
 }
+#solarflares{
+    text-align: right;
+    margin-top: 650px ;
+    padding-right: 100px;
+    font-size: large;
+    background-color: antiquewhite;
+
+   
+}
 img{
-    margin-top: 30%;
-    margin-left: 700px;
-    margin-right: 0px;
+    margin-top: -20%;
+    margin-left: auto;
+    margin-right: auto;
     width: 50%;
     height: 35%;
 }
@@ -74,14 +85,15 @@ img{
                 }
 
                 console.log("parsed data length " + data.length);
-                var monthCounter = [0,0,0,0,0,0,0,0,0,0,0,0];
+                let monthCounter = [0,0,0,0,0,0,0,0,0,0,0,0];
                 for (let i = 0; i < data.length; i++) {
-                    var eventStart = data[i].beginTime;
+                    let eventStart = data[i].beginTime;
                     if (eventStart === null) { 
                         continue; 
                     }
-                    var beginDate = new Date(eventStart);
-                    monthCounter[beginDate] += 1;
+                    let beginDate = new Date(eventStart);
+                    let month = beginDate.getMonth();
+                    monthCounter[month]++;
                 }
                 console.log(monthCounter)
             }
@@ -97,8 +109,10 @@ img{
 This shows how the data is </p>
     <p id="sub-header">What are solar flares?</p>
     </div>
-    <p id = "Solarflares" > A solar flare is a tremendous explosion on the sun that happens when energy stored in twisted magnetic fields which are suddenly realeased.
-        This usually happens above sunspots</p> 
+    <p id = "solarflares" > A solar flare is a tremendous explosion on the sun <br>
+                         that happens when energy stored in twisted magnetic <br>
+                         fields which are suddenly realeased. This usually happens <br>
+                         above sunspots</p> 
     <img id="one"
     src="https://images.hindustantimes.com/tech/img/2023/06/06/960x540/faintyoung_2_1686050565679_1686050565860.jpg"
     alt="solar flare photo one">
