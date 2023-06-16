@@ -68,7 +68,7 @@ img{
     </style>
     <script>
         let http;
-        let jsonData; // Variable to store the JSON data
+        let jsonData; 
 
         http = new XMLHttpRequest();
 
@@ -91,21 +91,21 @@ img{
             catch(error) {
                 console.log(error);
                 return;
-            }
-
-            console.log("parsed data length " + data.length);
-            let monthCounter = [0,0,0,0,0,0,0,0,0,0,0,0];
-            for (let i = 0; i < data.length; i++) {
-                let eventStart = data[i].beginTime;
-                if (eventStart === null) { 
-                    continue; 
-                }
-                let beginDate = new Date(eventStart);
-                let month = beginDate.getMonth();
-                monthCounter[month]++;
-            }
-            console.log(monthCounter)
         }
+
+        console.log("parsed data length " + data.length);
+        let monthCounter = [0,0,0,0,0,0,0,0,0,0,0,0];
+        for (let i = 0; i < data.length; i++) {
+            let eventStart = data[i].beginTime;
+            if (eventStart === null) { 
+                continue; 
+            }
+            let beginDate = new Date(eventStart);
+            let month = beginDate.getMonth();
+            monthCounter[month]++;
+        }
+        console.log(monthCounter)
+    }
 
 
     </script>
