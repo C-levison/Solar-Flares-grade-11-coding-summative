@@ -84,9 +84,6 @@ This shows how the data is </p>
     src="https://images.hindustantimes.com/tech/img/2023/06/06/960x540/faintyoung_2_1686050565679_1686050565860.jpg"
     alt="solar flare photo one">
     <img id = "two" width= "50%" height = "35%" src="https://cdn.sci.news/images/enlarge2/image_3801e-Solar-Flare.jpg" alt = "second solar flare">
-    <div>
-        <canvas id="myChart"></canvas>
-    </div>
     <canvas id = "SolarFlareChartID"></canvas>
 </div>
 
@@ -132,19 +129,6 @@ This shows how the data is </p>
 
         });
     }
-    const ctx = document.getElementById('myChart');
-
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                datasets: [{
-                    label: '# of Votes',
-                    data: [12, 19, 3, 5, 2, 3],
-                    borderWidth: 1
-                }]
-            }
-        });
     displayChart();
 
 </script>
