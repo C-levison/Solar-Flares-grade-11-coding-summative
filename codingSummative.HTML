@@ -35,21 +35,29 @@
     #sub-header{
     font-family: Arial, Helvetica, sans-serif;
     font-size: 35px;
-    margin-top: -5%;
+    margin-top: -6%;
     text-align: right;
     padding-right: 150px;
     
 }
 #solarflares{
-    text-align: right;
-    margin-top: 650px ;
-    padding-right: 100px;
+    text-align:center;
+    margin-top: 550px ;
+    margin-left: 50%;
     font-size: large;
     background-color: antiquewhite;
+    padding:50px;
 
    
 }
 img{
+    margin-top: -20%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    height: 35%;
+}
+#two{
     margin-top: -20%;
     margin-left: auto;
     margin-right: auto;
@@ -62,41 +70,42 @@ img{
         let http;
         let jsonData; // Variable to store the JSON data
 
-             http = new XMLHttpRequest();
+        http = new XMLHttpRequest();
 
-            http.open('GET', 'https://api.nasa.gov/DONKI/FLR?startDate=2016-01-01&endDate=2022-12-31&api_key=6lndcUdaT89ulcIkfai8eWvmBhrF1bJg0aAR6xZk', true);
-            http.setRequestHeader('Accept', 'application/json');
+        http.open('GET', 'https://api.nasa.gov/DONKI/FLR?startDate=2016-01-01&endDate=2022-12-31&api_key=6lndcUdaT89ulcIkfai8eWvmBhrF1bJg0aAR6xZk', true);
+        http.setRequestHeader('Accept', 'application/json');
 
-            http.onreadystatechange = showSolarFlares;
-            http.send();
+        http.onreadystatechange = showSolarFlares;
+        http.send();
 
-            function showSolarFlares() {
-                if (http.status !== 200) {
-                    return;
-                }
-                if (http.readyState !== 4){
-                    return;
-                }
-                try{
-                data = JSON.parse(http.responseText);}
-                catch(error) {
-                    console.log(error);
-                    return;
-                }
-
-                console.log("parsed data length " + data.length);
-                let monthCounter = [0,0,0,0,0,0,0,0,0,0,0,0];
-                for (let i = 0; i < data.length; i++) {
-                    let eventStart = data[i].beginTime;
-                    if (eventStart === null) { 
-                        continue; 
-                    }
-                    let beginDate = new Date(eventStart);
-                    let month = beginDate.getMonth();
-                    monthCounter[month]++;
-                }
-                console.log(monthCounter)
+        function showSolarFlares() {
+            if (http.status !== 200) {
+                return;
             }
+            if (http.readyState !== 4){
+                return;
+            }
+            try { 
+                data = JSON.parse(http.responseText);
+            }
+            catch(error) {
+                console.log(error);
+                return;
+            }
+
+            console.log("parsed data length " + data.length);
+            let monthCounter = [0,0,0,0,0,0,0,0,0,0,0,0];
+            for (let i = 0; i < data.length; i++) {
+                let eventStart = data[i].beginTime;
+                if (eventStart === null) { 
+                    continue; 
+                }
+                let beginDate = new Date(eventStart);
+                let month = beginDate.getMonth();
+                monthCounter[month]++;
+            }
+            console.log(monthCounter)
+        }
 
 
     </script>
@@ -116,6 +125,7 @@ This shows how the data is </p>
     <img id="one"
     src="https://images.hindustantimes.com/tech/img/2023/06/06/960x540/faintyoung_2_1686050565679_1686050565860.jpg"
     alt="solar flare photo one">
+    <img id = "two" width= "50%" height = "35%" src="https://cdn.sci.news/images/enlarge2/image_3801e-Solar-Flare.jpg" alt = "second solar flare">
 </div>
 </body>
 
