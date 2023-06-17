@@ -50,19 +50,46 @@
 
    
 }
-img{
-    margin-top: -20%;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-    height: 35%;
+.slider-wrapper{
+    position:relative;
+    max-width: 48rem;
+    margin: 0 auto;
+    margin-top: -25%;
+    margin-left: 20px;
+
 }
-#two{
-    margin-top: -20%;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-    height: 35%;
+.slider{
+    display:flex;
+    aspect-ratio: 3/2;
+    overflow: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    box-shadow: 0 1.5rem 3rem -0.75rem hsla(0,0%,0%, 0.25);
+}
+.slider img{
+    flex: 1 0 100%;
+    scroll-snap-align: start;
+    object-fit: cover;
+    
+}
+.slider-nav{
+    display: flex;
+    column-gap: 1rem;
+    position: absolute;
+    bottom: 1.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index:1;
+}
+.slider-nav a{
+    width: 0.5rem;
+    height:0.5rem;
+    border-radius: 50%;
+    background-color:#ffffff;
+    opacity: 75%;
+}
+canvas{
+    top:100%;
 }
 
     </style>
@@ -80,10 +107,24 @@ This shows how the data is </p>
                          that happens when energy stored in twisted magnetic <br>
                          fields which are suddenly realeased. This usually happens <br>
                          above sunspots</p> 
-    <img id="one"
-    src="https://images.hindustantimes.com/tech/img/2023/06/06/960x540/faintyoung_2_1686050565679_1686050565860.jpg"
-    alt="solar flare photo one">
-    <img id = "two" width= "50%" height = "35%" src="https://cdn.sci.news/images/enlarge2/image_3801e-Solar-Flare.jpg" alt = "second solar flare">
+    <section class = "container">
+        <div class="slider-wrapper">
+            <div class=" slider">
+                <img id="one"
+                    src="https://images.hindustantimes.com/tech/img/2023/06/06/960x540/faintyoung_2_1686050565679_1686050565860.jpg"
+                    alt="solar flare photo one">
+                <img id="two" src="https://cdn.sci.news/images/enlarge2/image_3801e-Solar-Flare.jpg" alt="second solar flare">
+                <img id="three"
+                    src="https://media-cldnry.s-nbcnews.com/image/upload/t_fit-760w,f_auto,q_auto:best/newscms/2017_23/2030061/170608-solar-flare-mn-0850.jpg"
+                    alt="third solar flare photo"></img>
+            </div>
+                 <div class="slider-nav">
+                <a href="#one"></a>
+                <a href="#two"></a>
+                <a href="#three"></a>
+             </div>
+        </div>
+    </section>
     <canvas id = "SolarFlareChartID"></canvas>
 </div>
 
