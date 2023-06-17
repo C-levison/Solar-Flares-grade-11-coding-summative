@@ -125,7 +125,7 @@ This shows how the data is </p>
              </div>
         </div>
     </section>
-    <h3>Min and Max Solar Duration</h3>
+    <h3>Min and Max Solar Duration in seconds</h3>
     <p id="minMax"></p>
     <canvas id = "SolarFlareChartID"></canvas>
 </div>
@@ -134,7 +134,7 @@ This shows how the data is </p>
 <script>
     //Script content moved below the body to allow ChartJS to find the elementID 
     async function fetchSolarFlareData(){
-        const nasaAPIUrl = 'https://api.nasa.gov/DONKI/FLR?startDate=2016-01-01&endDate=2016-12-31&api_key=6lndcUdaT89ulcIkfai8eWvmBhrF1bJg0aAR6xZk';
+        const nasaAPIUrl = 'https://api.nasa.gov/DONKI/FLR?startDate=2016-01-01&endDate=2022-12-31&api_key=6lndcUdaT89ulcIkfai8eWvmBhrF1bJg0aAR6xZk';
         const response = await fetch(nasaAPIUrl);
         const data = await response.json();
         return data;
@@ -169,6 +169,11 @@ This shows how the data is </p>
             let beginTime = new Date(eventStart);
             let endTime = new Date(eventEnd);
             let duration = (endTime - beginTime)/1000;
+
+            // The dataset contains durations that are impossible (since you cannot have negative time) and so I decided to remove them from the dataset
+            if ((duration < 0) || (duration > 100000)) {
+                continue;
+            }
             min = Math.min(min,duration);
             max = Math.max(max,duration);
         }
