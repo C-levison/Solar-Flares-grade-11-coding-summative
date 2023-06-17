@@ -131,12 +131,14 @@ This shows how the data is </p>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     //Script content moved below the body to allow ChartJS to find the elementID 
-    async function fetchSolarFlareData()
-    {
+    async function fetchSolarFlareData(){
         const nasaAPIUrl = 'https://api.nasa.gov/DONKI/FLR?startDate=2016-01-01&endDate=2022-12-31&api_key=6lndcUdaT89ulcIkfai8eWvmBhrF1bJg0aAR6xZk';
         const response = await fetch(nasaAPIUrl);
         const data = await response.json();
+        return data;
+    }
 
+    function countSolarFlares(data){
         console.log("parsed data length " + data.length);
         let monthCounter = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
         for (let i = 0; i < data.length; i++) {
@@ -152,9 +154,9 @@ This shows how the data is </p>
     }
 
     async function displayChart(){
-        let chartData = await fetchSolarFlareData();
+        let solarFlareData = await fetchSolarFlareData();
+        let chartData = countSolarFlares(solarFlareData);
         console.log(chartData);
-        console.log("foobar");
         const solarFlareChart = document.getElementById("SolarFlareChartID");
         new Chart(solarFlareChart, {
             type: 'bar',
