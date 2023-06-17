@@ -155,8 +155,8 @@ This shows how the data is </p>
 
     async function displayChart(){
         let solarFlareData = await fetchSolarFlareData();
-        let chartData = countSolarFlares(solarFlareData);
-        console.log(chartData);
+        let solarFlareByMonth = countSolarFlares(solarFlareData);
+        console.log(solarFlareByMonth);
         const solarFlareChart = document.getElementById("SolarFlareChartID");
         new Chart(solarFlareChart, {
             type: 'bar',
@@ -164,12 +164,10 @@ This shows how the data is </p>
                 labels: ['Jan', 'Feb','Mar','Apr','May','Jun','Jul','Aug','Sept','Oct','Nov','dec'],
                 datasets: [{
                     label: '# of solar flares',
-                    data: chartData,
+                    data: solarFlareByMonth,
                     borderWidth: 1
                 }]
             }
-
-
         });
     }
     displayChart();
