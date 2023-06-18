@@ -147,9 +147,10 @@ This shows how the data is </p>
 <script>
     //Script content moved below the body to allow ChartJS to find the elementID 
     async function fetchSolarFlareData(){
-        const nasaAPIUrl = 'https://api.nasa.gov/DONKI/FLR?startDate=2016-01-01&endDate=2022-12-31&api_key=6lndcUdaT89ulcIkfai8eWvmBhrF1bJg0aAR6xZk';
+        const nasaAPIUrl = 'https://api.nasa.gov/DONKI/FLR?startDate=2016-01-01&endDate=2016-12-31&api_key=6lndcUdaT89ulcIkfai8eWvmBhrF1bJg0aAR6xZk';
         const response = await fetch(nasaAPIUrl);
         const data = await response.json();
+        console.log(data)
         return data;
     }
 
@@ -213,6 +214,7 @@ This shows how the data is </p>
         });
                 
     }
+    displayChart()
 </script>
 </body>
 
