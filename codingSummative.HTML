@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title> Summative Clarice Levison for Grade 11</title>
+    <title> Solar Flare summative</title>
     <style> 
     .banner-area{
         background-image: url(https://hips.hearstapps.com/pop.h-cdn.co/assets/17/05/1280x640/landscape-1485810024-screen-shot-2017-01-30-at-115302-am.jpg?resize=1200:*);
@@ -93,7 +93,7 @@ canvas{
 
 }
 h3{
-    margin-top: 40%;
+    margin-top: 20%;
     text-align: center;
     font-size: 40px;
 }
@@ -105,6 +105,24 @@ h3{
     padding-bottom: 3%;
 }
 
+#clasA{
+    margin-top: 3%;
+}
+h1{
+    text-align: center;
+    margin-top: 7%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+button{
+    margin-left: 50%;
+    background-color: antiquewhite;
+}
+p{
+    text-align: center;
+    font-size: medium;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
     </style>
     
 </head>
@@ -112,8 +130,8 @@ h3{
 <body>
     <div class = "banner-area">
     <h2> Solar Flares </h2>
-    <p id = "explain"> The data set used is a data set wich explores different solar flares that happened overtime from 2016 to 2022. 
-This shows how the data is </p>
+    <p id = "explain"> In the following website I use an API from NASA to show different data and explaination on Solar Flares. 
+        I use solar flare data from 2016-2022 to show different data. </p>
     <p id="sub-header">What are solar flares?</p>
     </div>
     <p id = "solarflares" > A solar flare is a tremendous explosion on the sun <br>
@@ -138,6 +156,17 @@ This shows how the data is </p>
              </div>
         </div>
     </section>
+    <h1>Solar flare class types</h1>
+    <button id = "clasA" onclick="classA()">Class A</button>
+    <p id = "resultA"></p>
+    <button onclick="classB()">Class B</button>
+    <p id="resultB"></p>
+    <button onclick="classC()">Class C</button>
+    <p id="resultC"></p>
+    <button onclick="classM()">Class M</button>
+    <p id="resultM"></p>
+    <button onclick="classX()">Class X</button>
+    <p id="resultX"></p>
     <h3>Min and Max Solar Flare Duration in seconds</h3>
     <p id="minMax"></p>
     <canvas id = "SolarFlareChartID"></canvas>
@@ -145,12 +174,33 @@ This shows how the data is </p>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
+    function classA(){
+        document.getElementById("resultA").innerText = "This is the smallest Solar flare on the scale.";
+    }
+
+    function classB(){
+         document.getElementById("resultB").innerText = "It's second on the scale and is too small to harm Earth."
+    }
+
+    function classC(){
+            document.getElementById("resultC").innerText = "It's right in the middle of the scale and has small solar flares with few noticeable consequences on Earth."
+    }
+
+    function classM(){
+        document.getElementById("resultM").innerText = "It is the second largest solar flare on the scale. It Can cause brief radio blackouts that affect Earth's polar regions and minor radiation storms."
+    }
+
+    function classX(){
+         document.getElementById("resultX").innerText = "Class X is the largest class of solar flares. It can trigger planet-wide radio blackouts and long-lasting radiation storms."
+    }
+
+
+
     //Script content moved below the body to allow ChartJS to find the elementID 
     async function fetchSolarFlareData(){
         const nasaAPIUrl = 'https://api.nasa.gov/DONKI/FLR?startDate=2016-01-01&endDate=2016-12-31&api_key=6lndcUdaT89ulcIkfai8eWvmBhrF1bJg0aAR6xZk';
         const response = await fetch(nasaAPIUrl);
         const data = await response.json();
-        console.log(data)
         return data;
     }
 
