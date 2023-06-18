@@ -89,7 +89,20 @@
     opacity: 75%;
 }
 canvas{
-    top:100%;
+    margin-top: 5%;
+
+}
+h3{
+    margin-top: 40%;
+    text-align: center;
+    font-size: 40px;
+}
+#minMax{
+    text-align: center;
+    font-size: large;
+    background-color: antiquewhite;
+    padding-top: 4%;
+    padding-bottom: 3%;
 }
 
     </style>
@@ -125,7 +138,7 @@ This shows how the data is </p>
              </div>
         </div>
     </section>
-    <h3>Min and Max Solar Duration in seconds</h3>
+    <h3>Min and Max Solar Flare Duration in seconds</h3>
     <p id="minMax"></p>
     <canvas id = "SolarFlareChartID"></canvas>
 </div>
@@ -195,12 +208,11 @@ This shows how the data is </p>
                     label: '# of solar flares',
                     data: solarFlareByMonth,
                     borderWidth: 1
-                }]
+                }],
             }
         });
+                
     }
-    displayChart();
-
 </script>
 </body>
 
