@@ -130,7 +130,7 @@ p{
 <body>
     <div class = "banner-area">
     <h2> Solar Flares </h2>
-    <p id = "explain"> In the following website I use an API from NASA to show different data and explaination on Solar Flares. 
+    <p id = "explain"> In the following website I used an API from NASA to show different data and explaination on Solar Flares. 
         I use solar flare data from 2016-2022 to show different data. </p>
     <p id="sub-header">What are solar flares?</p>
     </div>
@@ -198,7 +198,7 @@ p{
 
     //Script content moved below the body to allow ChartJS to find the elementID 
     async function fetchSolarFlareData(){
-        const nasaAPIUrl = 'https://api.nasa.gov/DONKI/FLR?startDate=2016-01-01&endDate=2016-12-31&api_key=6lndcUdaT89ulcIkfai8eWvmBhrF1bJg0aAR6xZk';
+        const nasaAPIUrl = 'https://api.nasa.gov/DONKI/FLR?startDate=2016-01-01&endDate=2022-12-31&api_key=6lndcUdaT89ulcIkfai8eWvmBhrF1bJg0aAR6xZk';
         const response = await fetch(nasaAPIUrl);
         const data = await response.json();
         return data;
@@ -260,6 +260,17 @@ p{
                     data: solarFlareByMonth,
                     borderWidth: 1
                 }],
+            },
+            options: {
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Frequency of Solar Flares by Month from 2016 to 2022',
+                        font: {
+                            size: 24
+                        }
+                    }
+                }
             }
         });
                 
